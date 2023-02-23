@@ -44,7 +44,7 @@ En la ruta users se cargará el componente list. Además de una lista de los usu
   
 - La contraseña debe cumplir con un patrón.
   
-- El rol será un campo select y deberemos seleccionar uno de los roles válidos [ADMIN_ROLE, USER_ROLE].
+- El rol será de tipo radio y deberemos seleccionar uno de los roles válidos [ADMIN_ROLE, USER_ROLE].
   
 
 Se deben mostrar errores de validación, pero solo cuando el usuario hay interactuado con un campo.
@@ -62,3 +62,78 @@ Añade un interceptor que añada automáticamente el token a las peticiones nece
 - Dale funcionalidad al botón delete de la lista de usuarios, para que borre el usuario al que corresponde.
   
 - Crea una nueva ruta users/edit/:id que a cargue el componente add-edit y nos permita editar un usuario, para ello en la lista de usuarios existirá un botón edit que nos llevará allí.
+  
+
+## Usuarios existentes
+
+#### ADMIN_ROLE:
+
+> correo: joadelvia@iesjacaranda.es
+> 
+> password: joadelvia
+
+#### USER_ROLE:
+
+> correo: maria@iesjacaranda.es
+> 
+> password: 123456
+
+## Rutas de la API
+
+**POST /api/auth/login {correo, password}**
+
+**GET /api/users**
+
+GET /api/users/:id
+
+**POST /api/users {nombre, correo, password, rol} Restricciones: password mínimo 6 letras**
+
+**DELETE /api/users/:id**
+
+**GET /api/categories**
+
+GET /api/categories/:id
+
+POST /api/categories {nombre}
+
+DELETE /api/categories/:id
+
+**GET /api/products Acepta el query param categoria y devuelve los productos de esa categoría**
+
+GET /api/products/:id
+
+POST /api/products {nombre, categoria, precio, descripcion} Restricciones: el nombre es obligatorio y la categoría debe existir
+
+PUT /api/products/:id
+
+DELETE /api/products/:id
+
+Exite también una ruta search y otra uploads pero no las vamos a utilizar
+
+## Criterios de evaluación:
+
+- Almacena datos de sesión de usuario. 0,5
+  
+- Recupera datos de sesión de usuario. 0,5
+  
+- Crea módulos y los carga de forma diferida. 0.5
+  
+- Crea rutas dentro de los módulos cargados de forma diferida. 0,5
+  
+- Recupera elementos de una API y los muestra correctamente. 1
+  
+- Protege rutas mediante autenticación JWT y redirige a los usuarios sin permisos. 1
+  
+- Configura rutas con parámetros y recupera parámetros de las rutas. 1
+  
+- Recupera datos del usuario a través de formularios correctamente validados. 1
+  
+- Guarda información recuperada mediante formularios en la API. 1
+  
+- Controla el envío de formularios según la validación. 1
+  
+- Muestra elementos de la interfaz de forma condicional según datos de la sesión del usuario. 0,5
+  
+- Muestra errores de validación en los formularios. 1
+  
+- Utiliza un interceptor para modificar la petición añadiéndole el token. 0,5
