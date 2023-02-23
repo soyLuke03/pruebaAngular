@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <h1>Categorias</h1>
+            <hr>
+            <table>
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <tr *ngFor="let cat of categorias.categorias">
+                    <td>{{cat._id}} </td>
+                    <td>{{cat.nombre}} </td>
+                    <td><a class="btn btn-primary" [routerLink]="['products', cat._id]">PRODUCTOS</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<a class="btn btn-primary" [routerLink]="['/shop/add']" *ngIf="rol=='ADMIN_ROLE'">AÑADIR CATEGORIA</a>
+<router-outlet></router-outlet>

@@ -1,5 +1,5 @@
 ﻿<h1>Users</h1>
-<a routerLink="add" class="btn btn-sm btn-success mb-2">Add User</a>
+<a routerLink="add" *ngIf="rol=='ADMIN_ROLE'" class="btn btn-sm btn-success mb-2">Add User</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -15,7 +15,7 @@
             <td>{{user.correo}}</td>
             <td>{{user.rol}}</td>
             <td style="white-space: nowrap">
-                <button class="btn btn-sm btn-danger btn-delete-user">
+                <button (click)="delete(user.uid)" class="btn btn-sm btn-danger btn-delete-user">
                     <span>Delete</span>
                 </button>
             </td>

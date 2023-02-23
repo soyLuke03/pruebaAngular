@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 import { environment } from '@environments/environment';
 
 import { User, Usuario } from '@app/_interfaces/user';
+import { Observable } from 'rxjs';
+import { Categoria } from '@app/_interfaces/categories';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -13,6 +15,8 @@ export class AccountService {
         private router: Router,
         private http: HttpClient
     ) {}
+
+
     public get token(): string {
         const user = localStorage.getItem('user');
         if (user){
@@ -22,6 +26,7 @@ export class AccountService {
         return ''
         
     }
+
     public get userValue(): Usuario|null {
         const user = localStorage.getItem('user');
         if (user){
@@ -82,4 +87,20 @@ export class AccountService {
                 return x;
             }));
     }
+
+
+
+
+    getCategories():Observable<Categoria> {
+        return this.http.get<Categoria>(`${environment.apiUrl}/api/categories`)
+    }
+
+    getProducts(param:string):Observable<Categoria> {
+        return this.http.get<Categoria>(`${environment.apiUrl}/api/products?categoria=${param}`)
+    }
+
+    addCategory(nombre:string):Observable<Categoria> {
+        return this.http.post<Categoria>(`${environment.apiUrl}/api/categories`,nombre)
+    }
+
 }

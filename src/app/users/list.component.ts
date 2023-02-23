@@ -8,6 +8,10 @@ import { Usuario } from '@app/_interfaces/user';
 export class ListComponent implements OnInit {
     users?: Usuario[];
 
+
+    loggedUser:string|null = ""
+    rol:string|undefined = ""
+
     constructor(private accountService: AccountService) {}
 
     ngOnInit() {
@@ -16,6 +20,18 @@ export class ListComponent implements OnInit {
             .subscribe(users => {
                 this.users = users;
             })
+    
+    if(localStorage.getItem('user')!=null)
+        this.loggedUser = localStorage.getItem('user');
+        this.rol = this.loggedUser?.split('"')[5]
+        
+    }
+    
+    delete(id:string){
+        this.accountService.delete(id).subscribe({
+            next: resp => console.log(resp)
+            
+        })
     }
 
 }
